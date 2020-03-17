@@ -63,7 +63,6 @@ class ShopDetail extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  GridView.count(crossAxisCount: 2)
                 ],
               ),
             )
