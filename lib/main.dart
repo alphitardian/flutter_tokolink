@@ -6,6 +6,7 @@ import 'package:ftokolink/screens/itemdetail_screen.dart';
 import 'package:ftokolink/screens/login_screen.dart';
 import 'package:ftokolink/screens/search_screen.dart';
 import 'package:ftokolink/screens/shopdetail_screen.dart';
+import 'package:ftokolink/screens/wallet_screen.dart';
 
 void main() => runApp(TokoLinkApp());
 
@@ -23,6 +24,7 @@ class TokoLinkApp extends StatelessWidget {
         SearchScreen.id: (context) => SearchScreen(),
         DetailScreen.id: (context) => DetailScreen(),
         ShopDetail.id: (context) => ShopDetail(),
+        WalletScreen.id: (context) => WalletScreen(),
       },
     );
   }

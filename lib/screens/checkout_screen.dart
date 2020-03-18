@@ -85,40 +85,49 @@ class CheckOut extends StatelessWidget {
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30))),
             ),
-            PaymentTiles(
-              paymentType: 'LinkPoints',
-              paymentDesc: 'Anda berpotensi mendapatkan cashback sebesar 30%',
+            InkWell(
+              onTap: () {},
+              child: PaymentTiles(
+                paymentType: 'LinkPoints',
+                paymentDesc: 'Anda berpotensi mendapatkan cashback sebesar 30%',
+              ),
             ),
-            PaymentTiles(
-              paymentType: 'Cash',
-              paymentDesc: 'Bayar langsung ditempat',
+            InkWell(
+              onTap: () {},
+              child: PaymentTiles(
+                paymentType: 'Cash',
+                paymentDesc: 'Bayar langsung ditempat',
+              ),
             ),
-            PaymentTiles(
-              paymentType: 'Kasbon',
-              paymentDesc:
-                  'Bayar maksimal 30 hari secara otomatis menggunakan LinkPoints',
+            InkWell(
+              onTap: () {},
+              child: PaymentTiles(
+                paymentType: 'Kasbon',
+                paymentDesc:
+                    'Bayar maksimal 30 hari secara otomatis menggunakan LinkPoints',
+              ),
             )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        icon: Icon(
-          Icons.payment,
-          size: 30,
-          color: Colors.white,
-        ),
-        label: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Text(
-            'Bayar',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
-          ),
-        ),
-      ),
+//      floatingActionButton: FloatingActionButton.extended(
+//        onPressed: () {},
+//        icon: Icon(
+//          Icons.payment,
+//          size: 30,
+//          color: Colors.white,
+//        ),
+//        label: Padding(
+//          padding: const EdgeInsets.all(10.0),
+//          child: Text(
+//            'Bayar',
+//            style: TextStyle(
+//              fontWeight: FontWeight.bold,
+//              fontSize: 20,
+//            ),
+//          ),
+//        ),
+//      ),
     );
   }
 }

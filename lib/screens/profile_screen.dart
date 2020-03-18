@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ftokolink/constants.dart';
 import 'package:ftokolink/screens/login_screen.dart';
+import 'package:ftokolink/screens/wallet_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -59,7 +60,9 @@ class ProfileScreen extends StatelessWidget {
             ),
             ProfileTiles(
               title: 'History',
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, WalletScreen.id);
+              },
             ),
             ProfileTiles(
               title: 'Pembayaran',

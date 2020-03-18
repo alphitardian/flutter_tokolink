@@ -5,6 +5,7 @@ import 'package:ftokolink/models/items.dart';
 import 'package:ftokolink/screens/cart_screen.dart';
 import 'package:ftokolink/screens/profile_screen.dart';
 import 'package:ftokolink/screens/search_screen.dart';
+import 'package:ftokolink/screens/wallet_screen.dart';
 
 import '../constants.dart';
 
@@ -78,10 +79,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Icon(
-                          Icons.account_balance_wallet,
-                          color: Colors.white,
-                          size: 30,
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, WalletScreen.id);
+                          },
+                          child: Icon(
+                            Icons.account_balance_wallet,
+                            color: Colors.white,
+                            size: 30,
+                          ),
                         ),
                         SizedBox(
                           width: 5,

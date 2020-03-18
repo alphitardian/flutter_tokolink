@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ftokolink/components/item_tiles.dart';
 import 'package:ftokolink/constants.dart';
+import 'package:ftokolink/screens/shopdetail_screen.dart';
 
 class SearchScreen extends StatelessWidget {
   static const String id = 'searchScreen';
@@ -73,12 +74,17 @@ class SearchScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(
-                              'Toko Mbok Darmi',
-                              style: TextStyle(
-                                  color: kTextMainColor,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, ShopDetail.id);
+                              },
+                              child: Text(
+                                'Toko Mbok Darmi',
+                                style: TextStyle(
+                                    color: kTextMainColor,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
                             ItemTiles(
                               image: 'images/item1.png',
