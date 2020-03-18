@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ftokolink/components/card_item.dart';
 
 import '../constants.dart';
 
@@ -65,6 +66,50 @@ class ShopDetail extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: GridView.count(
+                crossAxisCount: 2,
+                shrinkWrap: true,
+                childAspectRatio: 9 / 11,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                physics: ScrollPhysics(),
+                children: <Widget>[
+                  CardItem(
+                    itemName: 'Beras',
+                    image: AssetImage('images/item1.png'),
+                    detail: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  CardItem(
+                    itemName: 'Sosis',
+                    image: AssetImage('images/item4.png'),
+                    detail: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  CardItem(
+                    itemName: 'Sabun',
+                    image: AssetImage('images/item2.png'),
+                    detail: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  CardItem(
+                    itemName: 'Sampo',
+                    image: AssetImage('images/item3.png'),
+                    detail: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
             )
           ],
         ),
