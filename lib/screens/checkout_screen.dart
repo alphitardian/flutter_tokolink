@@ -153,4 +153,3 @@ class CheckOut extends StatelessWidget {
     );
   }
 }
-
