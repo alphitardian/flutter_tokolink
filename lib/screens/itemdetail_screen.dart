@@ -2,16 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ftokolink/components/detail_tiles.dart';
 import 'package:ftokolink/constants.dart';
+import 'package:ftokolink/models/items.dart';
 import 'package:ftokolink/screens/shopdetail_screen.dart';
+import 'package:ftokolink/utils/list_shop.dart';
 
 class DetailScreen extends StatelessWidget {
   static const String id = 'detailScreen';
+
+  final Item item;
+
+  const DetailScreen({Key key, this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ItemName', style: kAppBarStyle),
+        title: Text('${item.name}', style: kAppBarStyle),
         centerTitle: true,
         elevation: 0,
       ),
@@ -26,7 +32,7 @@ class DetailScreen extends StatelessWidget {
                 children: <Widget>[
                   Center(
                     child: Image(
-                      image: AssetImage('images/item1.png'),
+                      image: item.itemImage,
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -56,34 +62,28 @@ class DetailScreen extends StatelessWidget {
                 ],
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, ShopDetail.id);
-              },
-              child: DetailTiles(
-                shop: 'Toko Mbak Dar',
-                range: '0.5 KM',
-                price: '56000',
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, ShopDetail.id);
-              },
-              child: DetailTiles(
-                shop: 'Toko Wira Ekonomi',
-                range: '0.6 KM',
-                price: '55000',
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, ShopDetail.id);
-              },
-              child: DetailTiles(
-                shop: 'Toko Kelontong A',
-                range: '0.8 KM',
-                price: '57200',
+            Container(
+              child: ListView.builder(
+                itemCount: shop.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ShopDetail(
+                              shop: shop[index],
+                            ),
+                          ));
+                    },
+                    child: DetailTiles(
+                      shop: shop[index].name,
+                      range: shop[index].range,
+                    ),
+                  );
+                },
+                shrinkWrap: true,
+                physics: ScrollPhysics(),
               ),
             )
           ],

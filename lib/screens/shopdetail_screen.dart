@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:ftokolink/components/card_item.dart';
+import 'package:ftokolink/models/shop.dart';
 
 import '../constants.dart';
 
 class ShopDetail extends StatelessWidget {
   static const String id = 'shopDetail';
 
+  final Shop shop;
+
+  const ShopDetail({Key key, this.shop}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ShopName', style: kAppBarStyle),
+        title: Text(shop.name, style: kAppBarStyle),
         centerTitle: true,
         elevation: 0,
       ),
@@ -73,30 +78,21 @@ class ShopDetail extends StatelessWidget {
                   CardItem(
                     itemName: 'Beras',
                     image: AssetImage('images/item1.png'),
-                    detail: () {
-                      Navigator.pop(context);
-                    },
                   ),
                   CardItem(
                     itemName: 'Sosis',
                     image: AssetImage('images/item4.png'),
-                    detail: () {
-                      Navigator.pop(context);
-                    },
                   ),
                   CardItem(
                     itemName: 'Sabun',
                     image: AssetImage('images/item2.png'),
-                    detail: () {
-                      Navigator.pop(context);
-                    },
                   ),
                   CardItem(
                     itemName: 'Sampo',
                     image: AssetImage('images/item3.png'),
-                    detail: () {
-                      Navigator.pop(context);
-                    },
+//                    detail: () {
+//                      Navigator.pop(context);
+//                    },
                   ),
                 ],
               ),

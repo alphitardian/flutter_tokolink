@@ -225,7 +225,9 @@ class _CartScreenState extends State<CartScreen> {
             children: <Widget>[
               SimpleDialogOption(
                 onPressed: () {
-                  Navigator.pop(context, Choice.COD);
+//                  Navigator.pop(context, Choice.COD);
+                  Navigator.pushNamed(context, CheckOut.id);
+                  print(Choice.COD);
                 },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

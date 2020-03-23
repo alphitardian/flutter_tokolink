@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ftokolink/components/card_item.dart';
 import 'package:ftokolink/constants.dart';
 import 'package:ftokolink/screens/itemdetail_screen.dart';
+import 'package:ftokolink/utils/list_item.dart';
 
 class HomeScreenLayout extends StatelessWidget {
   @override
@@ -72,49 +73,27 @@ class _ListItemState extends State<ListItem> {
             height: 10,
           ),
           Container(
-            height: 175,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                //loop cardItem
-                CardItem(
-                  itemName: 'Beras',
-                  image: AssetImage('images/item1.png'),
-                  detail: () {
-                    Navigator.pushNamed(context, DetailScreen.id);
-                  },
-                ),
-                CardItem(
-                  itemName: 'Sosis',
-                  image: AssetImage('images/item4.png'),
-                  detail: () {
-                    Navigator.pushNamed(context, DetailScreen.id);
-                  },
-                ),
-                CardItem(
-                  itemName: 'Sabun',
-                  image: AssetImage('images/item2.png'),
-                  detail: () {
-                    Navigator.pushNamed(context, DetailScreen.id);
-                  },
-                ),
-                CardItem(
-                  itemName: 'Tisu',
-                  image: AssetImage('images/item6.png'),
-                  detail: () {
-                    Navigator.pushNamed(context, DetailScreen.id);
-                  },
-                ),
-                CardItem(
-                  itemName: 'Sampo',
-                  image: AssetImage('images/item3.png'),
-                  detail: () {
-                    Navigator.pushNamed(context, DetailScreen.id);
-                  },
-                ),
-              ],
-            ),
-          )
+              height: 175,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: item.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DetailScreen(
+                                    item: item[index],
+                                  )));
+                    },
+                    child: CardItem(
+                      itemName: item[index].name,
+                      image: item[index].itemImage,
+                    ),
+                  );
+                },
+              ))
         ],
       ),
     );

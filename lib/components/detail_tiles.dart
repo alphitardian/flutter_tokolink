@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class DetailTiles extends StatelessWidget {
-  DetailTiles({this.range, this.shop, this.price});
+  DetailTiles({this.range, this.shop});
 
-  final String price;
   final String shop;
   final String range;
 
@@ -19,15 +18,15 @@ class DetailTiles extends StatelessWidget {
           Radius.circular(20),
         ),
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          height: 100,
+          padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 0),
+          height: 120,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
                 shop,
                 style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 23,
                     fontWeight: FontWeight.bold,
                     color: kTextMainColor),
               ),
@@ -38,16 +37,16 @@ class DetailTiles extends StatelessWidget {
                 range,
                 style: TextStyle(color: kTextMainColor),
               ),
-              SizedBox(
-                height: 5,
-              ),
-              Text(
-                'Rp. $price',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
-                  color: kMainColor,
-                ),
+              Row(
+                children: <Widget>[
+                  Spacer(),
+                  FlatButton(
+                    child: Text(
+                      'ADD',
+                      style: TextStyle(color: kMainColor, fontSize: 18),
+                    ),
+                  )
+                ],
               )
             ],
           ),

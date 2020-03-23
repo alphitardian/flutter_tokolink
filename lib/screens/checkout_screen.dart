@@ -1,13 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ftokolink/components/confirmation_dialog.dart';
+import 'package:ftokolink/components/payment_tiles.dart';
 import 'package:ftokolink/constants.dart';
 import 'package:ftokolink/screens/home_screen.dart';
 
 class CheckOut extends StatelessWidget {
   static const String id = 'checkOut';
-  String totalPrice = '56.000';
+
   @override
   Widget build(BuildContext context) {
+    String totalPrice = '56.000';
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
@@ -86,21 +90,39 @@ class CheckOut extends StatelessWidget {
                       bottomRight: Radius.circular(30))),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return ConfirmationDialog();
+                    });
+              },
               child: PaymentTiles(
                 paymentType: 'LinkPoints',
                 paymentDesc: 'Anda berpotensi mendapatkan cashback sebesar 30%',
               ),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return ConfirmationDialog();
+                    });
+              },
               child: PaymentTiles(
                 paymentType: 'Cash',
                 paymentDesc: 'Bayar langsung ditempat',
               ),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return ConfirmationDialog();
+                    });
+              },
               child: PaymentTiles(
                 paymentType: 'Kasbon',
                 paymentDesc:
@@ -132,46 +154,3 @@ class CheckOut extends StatelessWidget {
   }
 }
 
-class PaymentTiles extends StatelessWidget {
-  PaymentTiles({this.paymentDesc, this.paymentType});
-
-  final String paymentType;
-  final String paymentDesc;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
-      child: Material(
-        elevation: 10,
-        borderRadius: BorderRadius.all(Radius.circular(30)),
-        child: Container(
-          height: 75,
-          margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Text(
-                paymentType,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: kTextMainColor,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                paymentDesc,
-                style: TextStyle(
-                  color: kTextMainColor,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
