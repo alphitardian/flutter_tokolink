@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ftokolink/components/detail_tiles.dart';
 import 'package:ftokolink/constants.dart';
 import 'package:ftokolink/screens/shopdetail_screen.dart';
 
@@ -10,14 +11,7 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'ItemName',
-          style: TextStyle(
-            fontSize: 27,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
+        title: Text('ItemName', style: kAppBarStyle),
         centerTitle: true,
         elevation: 0,
       ),
@@ -73,6 +67,9 @@ class DetailScreen extends StatelessWidget {
               ),
             ),
             GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, ShopDetail.id);
+              },
               child: DetailTiles(
                 shop: 'Toko Wira Ekonomi',
                 range: '0.6 KM',
@@ -80,6 +77,9 @@ class DetailScreen extends StatelessWidget {
               ),
             ),
             GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, ShopDetail.id);
+              },
               child: DetailTiles(
                 shop: 'Toko Kelontong A',
                 range: '0.8 KM',
@@ -87,61 +87,6 @@ class DetailScreen extends StatelessWidget {
               ),
             )
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class DetailTiles extends StatelessWidget {
-  DetailTiles({this.range, this.shop, this.price});
-
-  final String price;
-  final String shop;
-  final String range;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-      child: Material(
-        elevation: 10,
-        borderRadius: BorderRadius.all(
-          Radius.circular(20),
-        ),
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          height: 100,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                shop,
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: kTextMainColor),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              Text(
-                range,
-                style: TextStyle(color: kTextMainColor),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              Text(
-                'Rp. $price',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
-                  color: kMainColor,
-                ),
-              )
-            ],
-          ),
         ),
       ),
     );

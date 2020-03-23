@@ -104,10 +104,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         Spacer(),
-                        Icon(
-                          Icons.history,
-                          color: Colors.white,
-                          size: 30,
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, WalletScreen.id);
+                          },
+                          child: Icon(
+                            Icons.history,
+                            color: Colors.white,
+                            size: 30,
+                          ),
                         )
                       ],
                     ),

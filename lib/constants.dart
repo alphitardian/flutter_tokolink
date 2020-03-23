@@ -19,3 +19,9 @@ const kTextFieldDecoration = InputDecoration(
 
 const Color kMainColor = Color(0xFF1098EC);
 const Color kTextMainColor = Color(0xFF707070);
+
+const kAppBarStyle = TextStyle(
+  fontSize: 27,
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+);

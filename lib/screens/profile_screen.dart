@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ftokolink/components/profile_tiles.dart';
 import 'package:ftokolink/constants.dart';
+import 'package:ftokolink/screens/about_screen.dart';
 import 'package:ftokolink/screens/login_screen.dart';
 import 'package:ftokolink/screens/wallet_screen.dart';
 
@@ -8,11 +10,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Profile',
-          style: TextStyle(
-              color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
-        ),
+        title: Text('Profile', style: kAppBarStyle),
         elevation: 0,
         actions: <Widget>[
           Padding(
@@ -65,12 +63,10 @@ class ProfileScreen extends StatelessWidget {
               },
             ),
             ProfileTiles(
-              title: 'Pembayaran',
-              onTap: () {},
-            ),
-            ProfileTiles(
-              title: 'Setting',
-              onTap: () {},
+              title: 'About',
+              onTap: () {
+                Navigator.pushNamed(context, AboutScreen.id);
+              },
             ),
             ProfileTiles(
               title: 'Log Out',
@@ -79,29 +75,6 @@ class ProfileScreen extends StatelessWidget {
               },
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class ProfileTiles extends StatelessWidget {
-  ProfileTiles({this.title, this.onTap});
-
-  final String title;
-  final Function onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Container(
-          child: Text(
-            title,
-            style: TextStyle(fontSize: 16),
-          ),
         ),
       ),
     );

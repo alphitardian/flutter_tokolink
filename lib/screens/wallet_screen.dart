@@ -10,14 +10,7 @@ class WalletScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Wallet',
-          style: TextStyle(
-            fontSize: 27,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
+        title: Text('Wallet', style: kAppBarStyle),
       ),
       body: Container(
         child: ListView(

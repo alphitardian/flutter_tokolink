@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ftokolink/screens/about_screen.dart';
 import 'package:ftokolink/screens/cart_screen.dart';
 import 'package:ftokolink/screens/checkout_screen.dart';
 import 'package:ftokolink/screens/home_screen.dart';
@@ -25,6 +26,7 @@ class TokoLinkApp extends StatelessWidget {
         DetailScreen.id: (context) => DetailScreen(),
         ShopDetail.id: (context) => ShopDetail(),
         WalletScreen.id: (context) => WalletScreen(),
+        AboutScreen.id: (context) => AboutScreen(),
       },
     );
   }

@@ -10,14 +10,7 @@ class ShopDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'ShopName',
-          style: TextStyle(
-            fontSize: 27,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
+        title: Text('ShopName', style: kAppBarStyle),
         centerTitle: true,
         elevation: 0,
       ),
