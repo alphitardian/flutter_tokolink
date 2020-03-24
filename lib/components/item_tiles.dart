@@ -2,25 +2,20 @@ import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
-class ItemTiles extends StatefulWidget {
-  ItemTiles(
-      {this.itemName,
-      this.image,
-      this.itemDescription,
-      this.itemPrice,
-      this.count});
+class ItemTiles extends StatelessWidget {
+  ItemTiles({
+    this.itemName,
+    this.image,
+    this.itemDescription,
+    this.itemPrice,
+  });
 
   final String itemName;
   final String itemDescription;
   final int itemPrice;
-  final String image;
-  int count;
+  final AssetImage image;
+//  int count;
 
-  @override
-  _ItemTilesState createState() => _ItemTilesState();
-}
-
-class _ItemTilesState extends State<ItemTiles> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,7 +31,7 @@ class _ItemTilesState extends State<ItemTiles> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Image(
-                  image: AssetImage(widget.image),
+                  image: image,
                   fit: BoxFit.contain,
                 ),
               ),
@@ -45,21 +40,21 @@ class _ItemTilesState extends State<ItemTiles> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    widget.itemName,
+                    itemName,
                     style: TextStyle(
                       fontSize: 20,
                       color: kTextMainColor,
                     ),
                   ),
                   Text(
-                    widget.itemDescription,
+                    itemDescription,
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.grey[500],
                     ),
                   ),
                   Text(
-                    'Rp ${(widget.itemPrice).toString()}',
+                    'Rp ${itemPrice.toString()}',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -68,48 +63,48 @@ class _ItemTilesState extends State<ItemTiles> {
                   )
                 ],
               ),
-              Container(
-                child: Row(
-                  children: <Widget>[
-                    GestureDetector(
-                      child: Icon(
-                        Icons.remove,
-                        color: kMainColor,
-                      ),
-                      onTap: () {
-                        setState(() {
-                          widget.count--;
-                        });
-                      },
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      widget.count.toString(),
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: kTextMainColor,
-                        fontSize: 18,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    GestureDetector(
-                      child: Icon(
-                        Icons.add,
-                        color: kMainColor,
-                      ),
-                      onTap: () {
-                        setState(() {
-                          widget.count++;
-                        });
-                      },
-                    )
-                  ],
-                ),
-              )
+//              Container(
+//                child: Row(
+//                  children: <Widget>[
+//                    GestureDetector(
+//                      child: Icon(
+//                        Icons.remove,
+//                        color: kMainColor,
+//                      ),
+//                      onTap: () {
+//                        setState(() {
+//                          widget.count--;
+//                        });
+//                      },
+//                    ),
+//                    SizedBox(
+//                      width: 5,
+//                    ),
+//                    Text(
+//                      widget.count.toString(),
+//                      style: TextStyle(
+//                        fontWeight: FontWeight.bold,
+//                        color: kTextMainColor,
+//                        fontSize: 18,
+//                      ),
+//                    ),
+//                    SizedBox(
+//                      width: 5,
+//                    ),
+//                    GestureDetector(
+//                      child: Icon(
+//                        Icons.add,
+//                        color: kMainColor,
+//                      ),
+//                      onTap: () {
+//                        setState(() {
+//                          widget.count++;
+//                        });
+//                      },
+//                    )
+//                  ],
+//                ),
+//              )
             ],
           ),
         ),

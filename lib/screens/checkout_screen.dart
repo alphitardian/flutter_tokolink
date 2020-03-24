@@ -3,14 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:ftokolink/components/confirmation_dialog.dart';
 import 'package:ftokolink/components/payment_tiles.dart';
 import 'package:ftokolink/constants.dart';
+import 'package:ftokolink/models/cart.dart';
 import 'package:ftokolink/screens/home_screen.dart';
+import 'package:ftokolink/utils/cart_data.dart';
+import 'package:provider/provider.dart';
 
 class CheckOut extends StatelessWidget {
   static const String id = 'checkOut';
 
+  final List<Cart> cart;
+
+  const CheckOut({Key key, this.cart}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    String totalPrice = '56.000';
+    int Price() {
+      int totalPrice = 0;
+
+      for (int i = 0; i < cart.length; i++) {
+        totalPrice += cart[i].price;
+      }
+      return totalPrice;
+    }
+
+    int finalPrice = Price();
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -69,7 +85,7 @@ class CheckOut extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 5.0),
                       child: Text(
-                        'Rp $totalPrice',
+                        'Rp $finalPrice',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 25,
@@ -91,6 +107,7 @@ class CheckOut extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
+                Provider.of<CartData>(context).clearItem(cart);
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -104,6 +121,7 @@ class CheckOut extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
+                Provider.of<CartData>(context).clearItem(cart);
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -117,6 +135,7 @@ class CheckOut extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
+                Provider.of<CartData>(context).clearItem(cart);
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {

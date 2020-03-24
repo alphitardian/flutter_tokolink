@@ -4,6 +4,8 @@ import 'package:ftokolink/components/item_tiles.dart';
 import 'package:ftokolink/constants.dart';
 import 'package:ftokolink/screens/checkout_screen.dart';
 import 'package:ftokolink/screens/search_screen.dart';
+import 'package:ftokolink/utils/cart_data.dart';
+import 'package:provider/provider.dart';
 
 import 'home_screen.dart';
 
@@ -134,47 +136,20 @@ class _CartScreenState extends State<CartScreen> {
                   topRight: Radius.circular(30),
                 ),
               ),
-              child: ListView(
-                children: <Widget>[
-                  ItemTiles(
-                    itemName: 'Beras',
-                    itemDescription: 'Ukuran 2kg',
-                    itemPrice: 56000,
-                    image: 'images/item1.png',
-                    count: 3,
-                  ),
-                  ItemTiles(
-                    itemName: 'Sabun',
-                    itemDescription: 'Ukuran 250ml',
-                    itemPrice: 6000,
-                    image: 'images/item2.png',
-                    count: 2,
-                  ),
-                  ItemTiles(
-                    itemName: 'Jamu',
-                    itemDescription: 'Ukuran 100ml',
-                    itemPrice: 10000,
-                    image: 'images/item3.png',
-                    count: 4,
-                  ),
-                  ItemTiles(
-                    itemName: 'Sosis',
-                    itemDescription: 'Ukuran 250g',
-                    itemPrice: 20000,
-                    image: 'images/item4.png',
-                    count: 6,
-                  ),
-                  ItemTiles(
-                    itemName: 'Rinso',
-                    itemDescription: 'Ukuran 500g',
-                    itemPrice: 46000,
-                    image: 'images/item5.png',
-                    count: 2,
-                  ),
-                  SizedBox(
-                    height: 75,
-                  ),
-                ],
+              child: Consumer<CartData>(
+                builder: (context, cart, child) {
+                  return ListView.builder(
+                    itemCount: cart.cartItem.length,
+                    itemBuilder: (context, index) {
+                      return ItemTiles(
+                        itemName: cart.cartItem[index].name,
+                        image: cart.cartItem[index].image,
+                        itemDescription: cart.cartItem[index].itemDesc,
+                        itemPrice: cart.cartItem[index].price,
+                      );
+                    },
+                  );
+                },
               ),
             ),
           ),
@@ -254,7 +229,8 @@ class _CartScreenState extends State<CartScreen> {
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  Navigator.pop(context, Choice.Delivery);
+//                  Navigator.pop(context, Choice.Delivery);
+//                  print(Choice.Delivery);
                 },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -280,29 +256,40 @@ class _CartScreenState extends State<CartScreen> {
                   ],
                 ),
               ),
-              SimpleDialogOption(
-                onPressed: () {
-                  //ke halaman cekout
-                  Navigator.pushNamed(context, CheckOut.id);
-                },
-                child: Row(
-                  children: <Widget>[
-                    Spacer(),
-                    Expanded(
-                      child: Container(
-                        height: 50,
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.white,
+              Consumer<CartData>(
+                builder: (context, cart, child) {
+                  return SimpleDialogOption(
+                    onPressed: () {
+                      //ke halaman cekout
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CheckOut(
+                              cart: cart.cartItem,
+                            ),
+                          ));
+                      print(Choice.Delivery);
+                    },
+                    child: Row(
+                      children: <Widget>[
+                        Spacer(),
+                        Expanded(
+                          child: Container(
+                            height: 50,
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.white,
+                            ),
+                            decoration: BoxDecoration(
+                                color: kMainColor,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
+                          ),
                         ),
-                        decoration: BoxDecoration(
-                            color: kMainColor,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  );
+                },
               )
             ],
           );

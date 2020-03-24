@@ -19,14 +19,14 @@ class DetailTiles extends StatelessWidget {
         ),
         child: Container(
           padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 0),
-          height: 120,
+          height: 100,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
                 shop,
                 style: TextStyle(
-                    fontSize: 23,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                     color: kTextMainColor),
               ),
@@ -37,17 +37,6 @@ class DetailTiles extends StatelessWidget {
                 range,
                 style: TextStyle(color: kTextMainColor),
               ),
-              Row(
-                children: <Widget>[
-                  Spacer(),
-                  FlatButton(
-                    child: Text(
-                      'ADD',
-                      style: TextStyle(color: kMainColor, fontSize: 18),
-                    ),
-                  )
-                ],
-              )
             ],
           ),
         ),

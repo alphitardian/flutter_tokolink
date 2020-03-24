@@ -25,7 +25,7 @@ class CardItem extends StatelessWidget {
                 itemName,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 15,
+                  fontSize: 18,
                   color: Color(0xFF707070),
                 ),
               ),

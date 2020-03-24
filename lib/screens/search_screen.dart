@@ -87,15 +87,13 @@ class SearchScreen extends StatelessWidget {
                               ),
                             ),
                             ItemTiles(
-                              image: 'images/item1.png',
-                              count: 1,
+                              image: AssetImage('images/item1.png'),
                               itemPrice: 56000,
                               itemName: 'Beras KW1',
                               itemDescription: 'Ukuran 2KG',
                             ),
                             ItemTiles(
-                              image: 'images/item1.png',
-                              count: 1,
+                              image: AssetImage('images/item1.png'),
                               itemPrice: 54000,
                               itemName: 'Beras KW2',
                               itemDescription: 'Ukuran 2KG',

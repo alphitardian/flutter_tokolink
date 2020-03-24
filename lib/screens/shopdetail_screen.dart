@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ftokolink/components/card_item.dart';
+import 'package:ftokolink/components/card_grid_item.dart';
 import 'package:ftokolink/models/shop.dart';
+import 'package:ftokolink/utils/cart_data.dart';
+import 'package:provider/provider.dart';
 
 import '../constants.dart';
 
@@ -74,27 +77,41 @@ class ShopDetail extends StatelessWidget {
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
                 physics: ScrollPhysics(),
-                children: <Widget>[
-                  CardItem(
-                    itemName: 'Beras',
-                    image: AssetImage('images/item1.png'),
-                  ),
-                  CardItem(
-                    itemName: 'Sosis',
-                    image: AssetImage('images/item4.png'),
-                  ),
-                  CardItem(
-                    itemName: 'Sabun',
-                    image: AssetImage('images/item2.png'),
-                  ),
-                  CardItem(
-                    itemName: 'Sampo',
-                    image: AssetImage('images/item3.png'),
-//                    detail: () {
-//                      Navigator.pop(context);
-//                    },
-                  ),
-                ],
+                children: List.generate(shop.item.length, (index) {
+                  return InkWell(
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Ditambahkan ke Keranjang!'),
+                              actions: <Widget>[
+                                FlatButton(
+                                  onPressed: () {
+                                    Provider.of<CartData>(context).addItem(
+                                        shop.item[index].name,
+                                        shop.item[index].itemDesc,
+                                        shop.item[index].price,
+                                        shop.item[index].itemImage);
+                                    print(CartData().cartItem);
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    'Kembali Belanja',
+                                    style: TextStyle(fontSize: 18),
+                                  ),
+                                )
+                              ],
+                            );
+                          });
+                    },
+                    child: CardGridItem(
+                      itemName: shop.item[index].name,
+                      image: shop.item[index].itemImage,
+                      price: shop.item[index].price,
+                    ),
+                  );
+                }),
               ),
             ),
             SizedBox(
