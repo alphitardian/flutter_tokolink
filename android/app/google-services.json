@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1098090342002",
+    "firebase_url": "https://tokolink-f5f98.firebaseio.com",
+    "project_id": "tokolink-f5f98",
+    "storage_bucket": "tokolink-f5f98.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098090342002:android:897dcb5a0537d422a004eb",
+        "android_client_info": {
+          "package_name": "com.ardkit.ftokolink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1098090342002-os5qr8ad2fj4dl3l31rononrdnaae1sa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdZl0qU7H7NAJz57QVPucKVCTP4z5kYZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1098090342002-os5qr8ad2fj4dl3l31rononrdnaae1sa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

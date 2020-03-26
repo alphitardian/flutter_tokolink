@@ -16,8 +16,7 @@ class CardItem extends StatelessWidget {
         elevation: 5,
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          height: 200,
-          width: 100,
+          width: 110,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

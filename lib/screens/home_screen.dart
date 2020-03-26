@@ -1,11 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ftokolink/components/home_screen_list.dart';
-import 'package:ftokolink/models/items.dart';
 import 'package:ftokolink/screens/cart_screen.dart';
 import 'package:ftokolink/screens/profile_screen.dart';
 import 'package:ftokolink/screens/search_screen.dart';
 import 'package:ftokolink/screens/wallet_screen.dart';
+import 'package:ftokolink/utils/cart_data.dart';
+import 'package:provider/provider.dart';
 
 import '../constants.dart';
 
@@ -56,15 +58,49 @@ class _HomeState extends State<Home> {
 }
 
 class HomeScreen extends StatefulWidget {
+  final CartData cart;
+
+  const HomeScreen({Key key, this.cart}) : super(key: key);
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Item> items = [];
+  final _auth = FirebaseAuth.instance;
+  FirebaseUser loggedinUser;
+
+  @override
+  void initState() {
+    super.initState();
+
+    getCurrentUser();
+  }
+
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser();
+      if (user != null) {
+        loggedinUser = user;
+        print(loggedinUser.email);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  int currentBalance = 300000;
 
   @override
   Widget build(BuildContext context) {
+    var finalBalance;
+
+    if (finalBalance == null) {
+      finalBalance = currentBalance;
+    } else {
+      finalBalance = widget.cart?.walletUpdate();
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
@@ -94,12 +130,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         Column(
                           children: <Widget>[
-                            Text(
-                              'Rp. 300.000',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25,
-                                  color: Colors.white),
+                            Consumer<CartData>(
+                              builder: (context, cart, child) {
+                                return Text(
+                                  'Rp. ${cart.walletUpdate()}',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 25,
+                                      color: Colors.white),
+                                );
+                              },
                             )
                           ],
                         ),
@@ -120,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 20,
                     ),
                     Text(
-                      'Hai, Ardian Alphita!',
+                      'Hai, Selamat Datang!',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                     SizedBox(

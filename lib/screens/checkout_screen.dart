@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:ftokolink/components/confirmation_dialog.dart';
 import 'package:ftokolink/components/payment_tiles.dart';
 import 'package:ftokolink/constants.dart';
-import 'package:ftokolink/models/cart.dart';
 import 'package:ftokolink/screens/home_screen.dart';
 import 'package:ftokolink/utils/cart_data.dart';
 import 'package:provider/provider.dart';
@@ -11,22 +10,13 @@ import 'package:provider/provider.dart';
 class CheckOut extends StatelessWidget {
   static const String id = 'checkOut';
 
-  final List<Cart> cart;
+  final CartData cart;
 
   const CheckOut({Key key, this.cart}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    int Price() {
-      int totalPrice = 0;
-
-      for (int i = 0; i < cart.length; i++) {
-        totalPrice += cart[i].price;
-      }
-      return totalPrice;
-    }
-
-    int finalPrice = Price();
+    int finalPrice = cart?.calcPrice();
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -107,7 +97,7 @@ class CheckOut extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Provider.of<CartData>(context).clearItem(cart);
+                Provider.of<CartData>(context).clearItem();
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -121,7 +111,7 @@ class CheckOut extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Provider.of<CartData>(context).clearItem(cart);
+                Provider.of<CartData>(context).clearItem();
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -135,7 +125,7 @@ class CheckOut extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Provider.of<CartData>(context).clearItem(cart);
+                Provider.of<CartData>(context).clearItem();
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {

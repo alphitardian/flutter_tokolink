@@ -1,22 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ftokolink/constants.dart';
 import 'package:ftokolink/screens/home_screen.dart';
-import 'package:ftokolink/screens/registration_screen.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
-class LoginScreen extends StatefulWidget {
-  static const String id = 'loginScreen';
+import '../constants.dart';
+
+class RegistrationScreen extends StatefulWidget {
+  static const String id = 'registScreen';
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegistrationScreenState extends State<RegistrationScreen> {
   bool showProgress = false;
-  String email, password;
-
   final _auth = FirebaseAuth.instance;
+
+  String email, password;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 30),
                     child: Text(
-                      'Sign In',
+                      'Sign Up',
                       style: TextStyle(fontSize: 35, color: Colors.white),
                     ),
                   ),
@@ -112,37 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Text(
-                        'Forgot Password',
-                        style: TextStyle(
-                            fontStyle: FontStyle.italic, color: Colors.white70),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, RegistrationScreen.id);
-                      },
-                      child: Text(
-                        'Create an Account',
-                        style: TextStyle(
-                            fontStyle: FontStyle.italic, color: Colors.white70),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 100,
+                    height: 200,
                   ),
                 ],
               ),
@@ -166,10 +136,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             if (email != null &&
                                 password != null &&
                                 password.length > 5) {
-                              final loginUser =
-                                  await _auth.signInWithEmailAndPassword(
+                              final newUser =
+                                  await _auth.createUserWithEmailAndPassword(
                                       email: email, password: password);
-                              if (loginUser != null) {
+                              if (newUser != null) {
                                 Navigator.pushNamed(context, Home.id);
                               }
                               setState(() {

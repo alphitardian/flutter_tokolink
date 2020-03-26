@@ -139,13 +139,19 @@ class _CartScreenState extends State<CartScreen> {
               child: Consumer<CartData>(
                 builder: (context, cart, child) {
                   return ListView.builder(
+                    padding: EdgeInsets.only(bottom: 70),
                     itemCount: cart.cartItem.length,
                     itemBuilder: (context, index) {
-                      return ItemTiles(
-                        itemName: cart.cartItem[index].name,
-                        image: cart.cartItem[index].image,
-                        itemDescription: cart.cartItem[index].itemDesc,
-                        itemPrice: cart.cartItem[index].price,
+                      return InkWell(
+                        onLongPress: () {
+                          cart.deleteItem(cart.cartItem[index]);
+                        },
+                        child: ItemTiles(
+                          itemName: cart.cartItem[index].name,
+                          image: cart.cartItem[index].image,
+                          itemDescription: cart.cartItem[index].itemDesc,
+                          itemPrice: cart.cartItem[index].price,
+                        ),
                       );
                     },
                   );
@@ -198,63 +204,43 @@ class _CartScreenState extends State<CartScreen> {
                   color: kTextMainColor),
             ),
             children: <Widget>[
-              SimpleDialogOption(
-                onPressed: () {
-//                  Navigator.pop(context, Choice.COD);
-                  Navigator.pushNamed(context, CheckOut.id);
-                  print(Choice.COD);
+              Consumer<CartData>(
+                builder: (context, cart, child) {
+                  return SimpleDialogOption(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CheckOut(
+                              cart: cart,
+                            ),
+                          ));
+                      print(Choice.COD);
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Ambil di Tempat',
+                          style: TextStyle(
+                            color: kTextMainColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          'Tunjukkan ORDER ID pada penjual',
+                          style: TextStyle(
+                            color: kTextMainColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
                 },
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Ambil di Tempat',
-                      style: TextStyle(
-                        color: kTextMainColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      'Tunjukkan ORDER ID pada penjual',
-                      style: TextStyle(
-                        color: kTextMainColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SimpleDialogOption(
-                onPressed: () {
-//                  Navigator.pop(context, Choice.Delivery);
-//                  print(Choice.Delivery);
-                },
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Delivery',
-                      style: TextStyle(
-                        color: kTextMainColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      'Pilih layanan berikut ini',
-                      style: TextStyle(
-                        color: kTextMainColor,
-                      ),
-                    ),
-                    androidDropDown(),
-                  ],
-                ),
               ),
               Consumer<CartData>(
                 builder: (context, cart, child) {
@@ -265,7 +251,47 @@ class _CartScreenState extends State<CartScreen> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => CheckOut(
-                              cart: cart.cartItem,
+                              cart: cart,
+                            ),
+                          ));
+                      print(Choice.Delivery);
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Delivery',
+                          style: TextStyle(
+                            color: kTextMainColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          'Pilih layanan berikut ini',
+                          style: TextStyle(
+                            color: kTextMainColor,
+                          ),
+                        ),
+                        androidDropDown(),
+                      ],
+                    ),
+                  );
+                },
+              ),
+              Consumer<CartData>(
+                builder: (context, cart, child) {
+                  return SimpleDialogOption(
+                    onPressed: () {
+                      //ke halaman cekout
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CheckOut(
+                              cart: cart,
                             ),
                           ));
                       print(Choice.Delivery);

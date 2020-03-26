@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ftokolink/components/profile_tiles.dart';
 import 'package:ftokolink/constants.dart';
@@ -6,6 +7,8 @@ import 'package:ftokolink/screens/login_screen.dart';
 import 'package:ftokolink/screens/wallet_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
+  final _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +74,9 @@ class ProfileScreen extends StatelessWidget {
             ProfileTiles(
               title: 'Log Out',
               onTap: () {
+                _auth.signOut();
                 Navigator.pushNamed(context, LoginScreen.id);
+                print(_auth.signOut());
               },
             ),
           ],

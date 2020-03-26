@@ -25,8 +25,9 @@ class ItemTiles extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(20)),
         child: Container(
           height: 100,
+          padding: EdgeInsets.symmetric(horizontal: 20),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -60,7 +61,7 @@ class ItemTiles extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: kTextMainColor,
                     ),
-                  )
+                  ),
                 ],
               ),
 //              Container(
