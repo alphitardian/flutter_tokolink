@@ -41,7 +41,7 @@ class CardGridItem extends StatelessWidget {
                   ),
                   Image(
                     image: image,
-                    fit: BoxFit.contain,
+                    fit: BoxFit.scaleDown,
                   )
                 ],
               ),

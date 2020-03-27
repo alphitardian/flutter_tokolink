@@ -1,11 +1,52 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ftokolink/components/item_tiles.dart';
 import 'package:ftokolink/constants.dart';
-import 'package:ftokolink/screens/shopdetail_screen.dart';
+import 'package:ftokolink/models/items.dart';
+import 'package:ftokolink/screens/itemdetail_screen.dart';
+import 'package:ftokolink/utils/list_item.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   static const String id = 'searchScreen';
+
+  @override
+  _SearchScreenState createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  TextEditingController editingController = TextEditingController();
+
+  final duplicateItems = List<Item>.from(item);
+  var itemSearch = List<Item>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    itemSearch.addAll(duplicateItems);
+    super.initState();
+  }
+
+  void filterSearchResults(String query) {
+    List<Item> dummySearchList = List<Item>();
+    dummySearchList.addAll(duplicateItems);
+    if (query.isNotEmpty) {
+      List<Item> dummyListData = List<Item>();
+      dummySearchList.forEach((item) {
+        if (item.name.toLowerCase().contains(query.toLowerCase())) {
+          dummyListData.add(item);
+        }
+      });
+      setState(() {
+        itemSearch.clear();
+        itemSearch.addAll(dummyListData);
+      });
+      return;
+    } else {
+      setState(() {
+        itemSearch.clear();
+        itemSearch.addAll(duplicateItems);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +71,10 @@ class SearchScreen extends StatelessWidget {
                   height: 20,
                 ),
                 TextField(
+                  onChanged: (value) {
+                    filterSearchResults(value);
+                  },
+                  controller: editingController,
                   decoration: kTextFieldDecoration.copyWith(
                     hintText: 'Cari Barang atau Toko',
                     hintStyle: TextStyle(color: kTextMainColor),
@@ -59,52 +104,29 @@ class SearchScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              child: ListView(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0, vertical: 5),
-                    child: Material(
-                      elevation: 5,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.all(10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, ShopDetail.id);
-                              },
-                              child: Text(
-                                'Toko Mbok Darmi',
-                                style: TextStyle(
-                                    color: kTextMainColor,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
+              child: ListView.builder(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  itemCount: itemSearch.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailScreen(
+                                item: itemSearch[index],
                               ),
-                            ),
-                            ItemTiles(
-                              image: AssetImage('images/item1.png'),
-                              itemPrice: 56000,
-                              itemName: 'Beras KW1',
-                              itemDescription: 'Ukuran 2KG',
-                            ),
-                            ItemTiles(
-                              image: AssetImage('images/item1.png'),
-                              itemPrice: 54000,
-                              itemName: 'Beras KW2',
-                              itemDescription: 'Ukuran 2KG',
-                            ),
-                          ],
+                            ));
+                      },
+                      child: ListTile(
+                        trailing: Image(
+                          image: itemSearch[index].itemImage,
                         ),
+                        title: Text(itemSearch[index].name),
+                        subtitle: Text(itemSearch[index].itemDesc),
                       ),
-                    ),
-                  ),
-                ],
-              ),
+                    );
+                  }),
             ),
           )
         ],

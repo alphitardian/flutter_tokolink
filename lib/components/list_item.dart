@@ -48,7 +48,7 @@ class _ListItemState extends State<ListItem> {
             height: 10,
           ),
           Container(
-              height: 175,
+              height: 185,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: item.length,

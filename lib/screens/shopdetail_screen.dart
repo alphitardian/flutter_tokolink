@@ -73,7 +73,7 @@ class ShopDetail extends StatelessWidget {
               child: GridView.count(
                 crossAxisCount: 2,
                 shrinkWrap: true,
-                childAspectRatio: 9 / 11,
+                childAspectRatio: 9 / 12,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
                 physics: ScrollPhysics(),
